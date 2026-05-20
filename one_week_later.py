@@ -54,3 +54,11 @@ if month > 12:
 # -----------------------------
 print("A week after " + str(user_month) + "/" + str(user_day) +
       " is " + str(month) + "/" + str(day))
+
+
+def main():
+
+
+
+if __name__ == "__main__":
+    main()
