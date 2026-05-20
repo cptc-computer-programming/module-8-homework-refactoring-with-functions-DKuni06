@@ -9,54 +9,68 @@ FEB_DAYS = 28
 LONG_MONTH_DAYS = 31  # Jan, Mar, May, Jul, Aug, Oct, Dec
 SHORT_MONTH_DAYS = 30 # Apr, Jun, Sep, Nov
 
-# -----------------------------
-# User Input
-# -----------------------------
-user_month = int(input("Enter a month (1–12): "))
-user_day = int(input("Enter a day (1–31): "))
 
-# Copy input values so we can keep originals for final output
-month = user_month
-day = user_day
 
-# -----------------------------
-# Add 7 days
-# -----------------------------
-day += DAYS_IN_WEEK
 
-# -----------------------------
-# Adjust for month boundaries
-# -----------------------------
 
-# February (28 days)
-if month == 2 and day > FEB_DAYS:
-    month += 1
-    day -= FEB_DAYS
+def one_week_later(month, day):
 
-# Months with 31 days
-elif (month == 1 or month == 3 or month == 5 or
-      month == 7 or month == 8 or month == 10 or
-      month == 12) and day > LONG_MONTH_DAYS:
-    month += 1
-    day -= LONG_MONTH_DAYS
+    # -----------------------------
+    # Add 7 days
+    # -----------------------------
+    day += DAYS_IN_WEEK
 
-# Months with 30 days
-elif day > SHORT_MONTH_DAYS:
-    month += 1
-    day -= SHORT_MONTH_DAYS
+    # February (28 days)
+    if month == 2 and day > FEB_DAYS:
+        month += 1
+        day -= FEB_DAYS
 
-# Wrap around past December
-if month > 12:
-    month %= 12
+    # Months with 31 days
+    elif (month == 1 or month == 3 or month == 5 or
+        month == 7 or month == 8 or month == 10 or
+        month == 12) and day > LONG_MONTH_DAYS:
+        month += 1
+        day -= LONG_MONTH_DAYS
 
-# -----------------------------
-# Output
-# -----------------------------
-print("A week after " + str(user_month) + "/" + str(user_day) +
-      " is " + str(month) + "/" + str(day))
+    # Months with 30 days
+    elif day > SHORT_MONTH_DAYS:
+        month += 1
+        day -= SHORT_MONTH_DAYS
+
+    # Wrap around past December
+    if month > 12:
+        month %= 12
+    return month, day
 
 
 def main():
+    
+    # -----------------------------
+    # User Input
+    # -----------------------------
+    user_month = int(input("Enter a month (1–12): "))
+    # if user_month < 1 or user_month > 12:
+        # while user_month < 1 or user_month > 12:
+            # print("Invalid month. Please enter a month between 1 and 12.")
+            # user_month = int(input("Enter a month (1–12): "))
+    user_day = int(input("Enter a day (1–31): "))
+    # if user_day < 1 or user_day > 31:
+        # while user_day < 1 or user_day > 31:
+            # print("Invalid day. Please enter a day between 1 and 31.")
+            # user_day = int(input("Enter a day (1–31): "))
+
+    # Copy input values so we can keep originals for final output
+    month = user_month
+    day = user_day
+
+    month, day =one_week_later(month, day)
+
+    # -----------------------------
+    # Output
+    # -----------------------------
+    print("A week after " + str(user_month) + "/" + str(user_day) +
+        " is " + str(month) + "/" + str(day))
+
 
 
 
